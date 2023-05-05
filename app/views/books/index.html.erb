@@ -16,7 +16,12 @@
     <td>
       <%= link_to "詳細", book_path(book) , class:"btn btn-info" %>
      <!-- (book)は@books.each do |book|のインスタン変数のbookのこと -->
+      <%= link_to "変更", edit_book_path(book), class:"btn btn-warning" %>
+      <%= link_to "削除", book_path(book) ,method: "delete",data: {confirm:'本当に消すの？' }, class:"btn btn-danger" %>
+       <!-- 注意するのは、link_toの中でmethodを指定している部分です。これを忘れてしまうと、ただの詳細画面へのリンクになってしまいます
+            '本当に消すの'の部分は、" " ではNG！　必ず' 'で囲うこと！-->
     </td>
   </tr>
   <% end %>
 </table>
+<%= link_to "新規登録" , new_book_path , class:"btn btn-success" %>
