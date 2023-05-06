@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+    root to: "books#index"
     get "/books" => "books#index"
     post "/books" => "books#create"
     get "/books/new" => "books#new" , as:"new_book"
