@@ -1,6 +1,9 @@
 class BooksController < ApplicationController
+
   def index
     @books = Book.all
+    @books = @books.where(year: params.require(:year)) if params[:year].present?
+    @books = @books.where(month: params.require(:month)) if params[:month].present?
   end
 
   def show
@@ -31,8 +34,10 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
+      flash[:notice] = "家計簿に１件データを更新しました"
       redirect_to books_path
     else
+      flash.now[:alert] = "更新に失敗しました"
       render :edit
     end
   end
@@ -40,6 +45,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
+    flash[:notice] = "削除しました"
     redirect_to books_path
   end
 
