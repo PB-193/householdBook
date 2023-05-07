@@ -19,7 +19,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      flash[:notice] = "家計簿に１件データを登録しました"
+      flash[:notice] = "家計簿に「#{@book.year}年#{@book.month}月#{@book.category}」を登録しました"
       redirect_to books_path
     else
       flash.now[:alert] = "登録に失敗しました"
@@ -34,8 +34,8 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      flash[:notice] = "家計簿に１件データを更新しました"
-      redirect_to books_path
+      flash[:notice] ="家計簿の「#{@book.year}年#{@book.month}月#{@book.category}」を更新しました"
+      redirect_to book_path
     else
       flash.now[:alert] = "更新に失敗しました"
       render :edit

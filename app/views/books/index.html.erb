@@ -10,10 +10,14 @@
     <th>金額</th>
     <th>リンク</th>
   </tr>
+
+  <% sum = 0 %>
+  <% income = 0 %>
+  <% expense = 0 %>
   <% @books.each do |book| %>
   <tr>
     <td><%= book.year %>年<%= book.month %>月</td>
-    <td><%= book.inout %></td>
+    <td><%= book.inout == 1 ? "収入" : "支出" %></td>
     <td><%= book.category %></td>
     <td><%= book.amount %>万円</td>
     <td>
@@ -25,6 +29,34 @@
             '本当に消すの'の部分は、" " ではNG！　必ず' 'で囲うこと！-->
     </td>
   </tr>
+    <% if book.inout == 1 %>
+      <% sum = sum + book.amount %>
+    <% else %>
+      <% sum = sum - book.amount %>
+    <% end %>
+
+    <% if book.inout == 1 %>
+      <% income = income + book.amount %>
+    <% end %>
+
+    <% if book.inout == 2 %>
+      <% expense  += book.amount %>
+    <% end %>
+
   <% end %>
+  <tr>
+    <td><strong>収入の合計</strong></td>
+    <td><strong><%= income %>万円</strong></td>
+    <td><strong>支出の合計</strong></td>
+    <td><strong><%= expense %>万円</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><strong>合計</strong></td>
+    <td><strong><%= sum %>万円</strong></td>
+    <td></td>
+  </tr>
 </table>
 <%= link_to "新規登録" , new_book_path , class:"btn btn-success" %>
