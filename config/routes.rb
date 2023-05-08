@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get "signin" => "session#new"
     post "signin" => "session#create"
     get "signout" => "session#destroy"
+    get "users/edit" => "users#edit", as: "edit_user"
+    patch "users/" => "users#update" , as: "user"
     
     root to: "books#index"
     

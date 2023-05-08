@@ -13,9 +13,12 @@
 
   <body>
     <nav class="navbar navbar-light bg-light">
-      <h3 class-"navbar-brand">家計簿アプリ</h3>
+      <%= link_to books_path , class: "navbar-brand" do %>
+        <h3>家計簿アプリ</h3>
+      <% end %>
       <div>
         <% if session[:user_id].present? %>
+          <%= link_to "会員情報の更新", edit_user_path , class:"btn btn-outline-secondary" %>
           <%= link_to "ログアウト", signout_path , class:"btn btn-outline-secondary" %>
         <% else %>
           <%= link_to"会員登録",signup_path, class:"btn btn-outline-primary" %>
@@ -23,20 +26,20 @@
         <% end %>
       </div>
     </nav>
-    
+
     <div class="container" >
       <% if flash[:notice] %>
         <div class="alert alert-success" role="alert" >
           <%= flash[:notice] %>
         </div>
       <% end %>
-      
+
       <% if flash[:alert] %>
         <div class="alert alert-danger" role="alert" >
           <%= flash[:alert] %>
         </div>
       <% end %>
-      
+
       <%= yield %>
     </div>
   </body>
