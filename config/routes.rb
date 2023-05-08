@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
     resources :books
     post "/books/:id" => "books#update" 
-
+    
+    get "/signup" => "users#new"
+    post "/signup" =>"users#create"
+    get "signin" => "session#new"
+    post "signin" => "session#create"
+    get "signout" => "session#destroy"
+    
     root to: "books#index"
     
     # get "/books" => "books#index"

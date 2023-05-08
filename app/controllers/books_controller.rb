@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :redirect_to_signin
 
   def index
     @books = Book.all
@@ -52,6 +53,10 @@ class BooksController < ApplicationController
   private
   def book_params
     params.require(:book).permit(:year,:month, :inout, :amount, :category)
+  end
+  
+  def redirect_to_signin
+    redirect_to signin_path if session[:user_id].blank?
   end
 
 end

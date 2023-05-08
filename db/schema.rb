@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_05_044049) do
+ActiveRecord::Schema.define(version: 2023_05_08_074342) do
 
   create_table "books", force: :cascade do |t|
     t.integer "inout"
@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 2023_05_05_044049) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-end
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
-# inout：1なら収入、2なら支出を表しています
-# category：収支の種類
-# year：対象年度
-# month：対象月
-# amount：金額(万円)
+end
