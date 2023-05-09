@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.where(user_id: session[:user_id]).find(params[:id])
   end
 
   def new
@@ -19,8 +19,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    book_params[:user_id] = session[:user_id]
     @book = Book.new(book_params)
+    @book.user_id = session[:user_id]
     if @book.save
       flash[:notice] = "家計簿に「#{@book.year}年#{@book.month}月#{@book.category}」を登録しました"
       redirect_to books_path
@@ -31,11 +31,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.where(user_id: session[:user_id]).find(params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
+    @book = Book.where(user_id: session[:user_id]).find(params[:id])
     if @book.update(book_params)
       flash[:notice] ="家計簿の「#{@book.year}年#{@book.month}月#{@book.category}」を更新しました"
       redirect_to book_path
@@ -46,7 +46,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
+    @book = Book.where(user_id: session[:user_id]).find(params[:id])
     @book.destroy
     flash[:notice] = "削除しました"
     redirect_to books_path
