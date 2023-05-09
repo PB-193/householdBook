@@ -2,7 +2,8 @@ class BooksController < ApplicationController
   before_action :redirect_to_signin
 
   def index
-    @books = Book.all
+    @books = Book.where(user_id: session[:user_id])
+    # allだったのを、ログインしているユーザーのidで検索するようにしています。
     @books = @books.where(year: params.require(:year)) if params[:year].present?
     @books = @books.where(month: params.require(:month)) if params[:month].present?
   end
@@ -18,6 +19,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    book_params[:user_id] = session[:user_id]
     @book = Book.new(book_params)
     if @book.save
       flash[:notice] = "家計簿に「#{@book.year}年#{@book.month}月#{@book.category}」を登録しました"
@@ -51,6 +53,7 @@ class BooksController < ApplicationController
   end
 
   private
+  
   def book_params
     params.require(:book).permit(:year,:month, :inout, :amount, :category)
   end
