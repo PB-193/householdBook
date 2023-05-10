@@ -1,0 +1,12 @@
+<h3>ユーザー情報をみよう</h3>
+<table class="table table-striped">
+  <tr>
+    <th style="width: 500px;" >ユーザー名</th>
+    <th><%= @user.name %></th>
+  </tr>
+  <tr>
+    <th style="width: 500px;" >メールアドレス</th>
+    <th><%= @user.email %></th>
+  </tr>
+</table>
+<%= link_to "戻る",books_path,class:"btn btn-secondary"%>

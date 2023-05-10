@@ -1,5 +1,16 @@
 class UsersController < ApplicationController
-  before_action :redirect_to_signin, only: [:edit, :update]
+  before_action :redirect_to_signin, only: [:show, :edit, :update]
+  
+  def show
+    @user = User.find(params[:id])
+    if session[:user_id] == @user.id
+      # プロフィールページにアクセスしているユーザーが、表示しているユーザー自身である場合
+      @books = @user.books
+    else
+      # プロフィールページにアクセスしているユーザーが、表示しているユーザー自身ではない場合
+      render 'session/new'
+    end
+  end
   
   def new
     @user = User.new
@@ -23,6 +34,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(session[:user_id])
     if @user.update(user_params1)
+      if params[:user][:avatar].present?
+        @user.create_avatar(params[:user][:avatar])
+      end
       flash[:notice] = "会員登録の内容を更新しました"
       redirect_to edit_user_path(@user)
     else
@@ -37,7 +51,8 @@ class UsersController < ApplicationController
   end
   
   def user_params1
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :avatar)
   end
   
 end
+

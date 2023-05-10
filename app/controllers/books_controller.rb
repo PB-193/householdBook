@@ -6,6 +6,7 @@ class BooksController < ApplicationController
     # allだったのを、ログインしているユーザーのidで検索するようにしています。
     @books = @books.where(year: params.require(:year)) if params[:year].present?
     @books = @books.where(month: params.require(:month)) if params[:month].present?
+    @books = @books.where(inout: params.require(:inout)) if params[:inout].present?
   end
 
   def show
@@ -21,6 +22,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = session[:user_id]
+    # 現在ログインしているユーザーのid {session[:user_id]} を@book.user_idに代入することで、誰が家計簿を登録したかを記録することができます。
+    # もし@book.user_id = session[:user_id]がない場合、user_idカラムには何も値が代入されず、
+    # ログインしているユーザーの情報が家計簿に保存されないため、誰が登録したのかが分からなくなってしまいます。
     if @book.save
       flash[:notice] = "家計簿に「#{@book.year}年#{@book.month}月#{@book.category}」を登録しました"
       redirect_to books_path
