@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      book:
+        year: "年度"
+        month: "月"
+        category: "科目"
+        amount: "金額"
+

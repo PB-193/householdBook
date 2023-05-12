@@ -8,6 +8,19 @@
   <!-- もう一つ渡しているlocalオプションですが、これをtrueに設定しないとうまく動作しないことがあります。
        この設定で非同期通信という機能をオフにしているのですが、少し応用的な内容になってくるので、
          ここでは詳しくは解説しません。興味のある方は、非同期通信が何か調べてみてください。-->
+  
+    <% if book.errors.any? %>
+      <div>
+        <h2><%= book.errors.count %>つのエラーにより、登録ができませんでした</h2>
+        <ul>
+
+        <% book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+
+        </ul>
+      </div>
+    <% end %>
 
   <div class="form-group">
     <label>年度</label>
