@@ -1,5 +1,15 @@
 class SessionController < ApplicationController
   before_action :redirect_to_books, only: [:new, :create]
+
+  def guest_login
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = 'password'
+      user.name = 'Guest'
+    end
+    log_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   
   def new
   end

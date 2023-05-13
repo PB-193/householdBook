@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     get "users/edit" => "users#edit", as: "edit_user"
     patch "users/" => "users#update" , as: "user"
     get "users/:id/show" => "users#show", as: "show_user"
+    
+    post '/guest_login', to: 'sessions#guest_login'
 
     root to: "books#index"
 

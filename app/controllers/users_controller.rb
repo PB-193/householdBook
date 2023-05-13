@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   before_action :redirect_to_signin, only: [:show, :edit, :update]
   
+    def self.guest
+      find_or_create_by!(email: 'guest@example.com') do |user|
+        user.name = 'Guest User'
+        user.password = SecureRandom.urlsafe_base64
+      end
+    end
+  
   def show
     @user = User.find(params[:id])
     if session[:user_id] == @user.id
