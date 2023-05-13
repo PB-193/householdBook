@@ -20,7 +20,7 @@
         <% if session[:user_id].present? %>
           <%= link_to "会員情報を確認", show_user_path(session[:user_id]) , class:"btn btn-outline-secondary" %>
           <%= link_to "会員情報の更新", edit_user_path , class:"btn btn-outline-secondary" %>
-          <%= link_to "ログアウト", signout_path , class:"btn btn-outline-secondary" %>
+          <%= link_to "ログアウト", signout_path , class:"btn btn-outline-danger" %>
         <% else %>
           <%= link_to"会員登録",signup_path, class:"btn btn-outline-success" %>
           <%= link_to"ログイン",signin_path, class:"btn btn-outline-primary" %>

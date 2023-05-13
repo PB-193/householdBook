@@ -1,14 +1,23 @@
 # config/locales/ja.yml
 ja:
   activerecord:
+    attributes:
+      book:
+        year: "年度"
+        month: "月"
+        category: "科目"
+        amount: "金額"
     errors:
       messages:
         blank: "を入力してください"
-        taken: "は既に使用されています"
       models:
-        user:
+        book:
           attributes:
-            name:
-              blank: "名前を入力してください"
-            email:
-              taken: "このメールアドレスは既に使用されています"
+            year:
+              blank: "を入力してください"
+            month:
+              blank: "を入力してください"
+            category:
+              blank: "を入力してください"
+            amount:
+              blank: "を入力してください"

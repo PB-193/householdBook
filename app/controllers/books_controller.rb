@@ -29,7 +29,6 @@ class BooksController < ApplicationController
       flash[:notice] = "家計簿に「#{@book.year}年#{@book.month}月#{@book.category}」を登録しました"
       redirect_to books_path
     else
-      flash.now[:alert] = "登録に失敗しました"
       render :new
     end
   end
@@ -44,7 +43,6 @@ class BooksController < ApplicationController
       flash[:notice] ="家計簿の「#{@book.year}年#{@book.month}月#{@book.category}」を更新しました"
       redirect_to book_path
     else
-      flash.now[:alert] = "更新に失敗しました"
       render :edit
     end
   end

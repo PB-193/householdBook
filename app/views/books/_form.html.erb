@@ -10,14 +10,12 @@
          ここでは詳しくは解説しません。興味のある方は、非同期通信が何か調べてみてください。-->
   
     <% if book.errors.any? %>
-      <div>
-        <h2><%= book.errors.count %>つのエラーにより、登録ができませんでした</h2>
-        <ul>
-
+      <div class="alert alert-danger">
+        <h2><%= book.errors.count %>つのエラーが発生しました</h2>
+        <ul style="list-style: none;" >
         <% book.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
-
         </ul>
       </div>
     <% end %>
