@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
 
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates :year ,presence: true
   validates :month ,presence: true

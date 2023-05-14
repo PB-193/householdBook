@@ -20,6 +20,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    @book = current_user.books.build(book_params)
     @book = Book.new(book_params)
     @book.user_id = session[:user_id]
     # 現在ログインしているユーザーのid {session[:user_id]} を@book.user_idに代入することで、誰が家計簿を登録したかを記録することができます。
