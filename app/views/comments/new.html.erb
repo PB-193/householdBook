@@ -20,7 +20,7 @@
     <th>コメント</th>
     <td>
       <%= form_with model: @comment, url: book_comments_path(@book), local: true do |f| %>
-        <%= f.text_area :comment, placeholder: "コメント内容を入力してください" %>
+        <%= f.text_area :comment, placeholder: "コメント内容を入力してください!" %>
         <%= f.submit "コメントする", class: "btn btn-primary" %>
       <% end %>
     </td>
