@@ -1,4 +1,4 @@
-<h3>家計簿の詳細をみよう</h3>
+<h3>家計簿にコメントしてみよう</h3>
 <table class="table table-striped">
   <tr>
     <th>年月</th>
@@ -19,10 +19,11 @@
   <tr>
     <th>コメント</th>
     <td>
-      <% @book.comments.each do |comment| %>
-        <p><%= comment.comment %></p>
+      <%= form_with model: @comment, url: book_comments_path(@book), local: true do |f| %>
+        <%= f.text_area :comment, placeholder: "コメント内容を入力してください" %>
+        <%= f.submit "コメントする", class: "btn btn-primary" %>
       <% end %>
     </td>
   </tr>
 </table>
-<%= link_to "戻る",books_path,class:"btn btn-secondary"%>
+<%= link_to "戻る", books_path, class: "btn btn-secondary" %>

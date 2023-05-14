@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-    resources :books
+    resources :books do
     post "/books/:id" => "books#update"
+        resources :comments, only: [:new, :create]
+    end
 
     get "/signup" => "users#new"
     post "/signup" =>"users#create"

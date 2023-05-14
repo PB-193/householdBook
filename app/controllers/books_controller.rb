@@ -7,10 +7,12 @@ class BooksController < ApplicationController
     @books = @books.where(year: params.require(:year)) if params[:year].present?
     @books = @books.where(month: params.require(:month)) if params[:month].present?
     @books = @books.where(inout: params.require(:inout)) if params[:inout].present?
+    @comments = Comment.where(book_id: @books.pluck(:id))
   end
 
   def show
     @book = Book.where(user_id: session[:user_id]).find(params[:id])
+    @comments = @book.comments
   end
 
   def new
