@@ -20,7 +20,10 @@
     <th>コメント</th>
     <td>
       <% @book.comments.each do |comment| %>
-        <p><%= comment.comment %></p>
+        <p>
+          <%= comment.comment %>
+          <span><%= link_to '削除', comment, method: :delete, data: { confirm: '本当に削除しますか？' },class:"btn btn-danger" %></span>
+        </p>
       <% end %>
     </td>
   </tr>

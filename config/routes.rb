@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
     resources :books do
     post "/books/:id" => "books#update"
-        resources :comments, only: [:new, :create]
+        resources :comments, only: [:new, :create, :destroy]
     end
+    
+    resources :comments, only: [:destroy]
 
     get "/signup" => "users#new"
     post "/signup" =>"users#create"

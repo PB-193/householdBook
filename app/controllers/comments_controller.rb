@@ -16,6 +16,13 @@ class CommentsController < ApplicationController
       render 'books/index'
     end
   end
+  
+  def destroy
+    comment = Comment.find(params[:id])
+    book = comment.book
+    comment.destroy
+    redirect_to book_path(book), notice: 'コメントを削除しました。'
+  end
 
   private
 
