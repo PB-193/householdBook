@@ -26,7 +26,7 @@
       <%= link_to "削除", book_path(book) ,method: "delete",data: {confirm:'本当に消すの？' }, class:"btn btn-danger" %>
        <!-- 注意するのは、link_toの中でmethodを指定している部分です。これを忘れてしまうと、ただの詳細画面へのリンクになってしまいます
             '本当に消すの'の部分は、" " ではNG！　必ず' 'で囲うこと！-->
-      <%= link_to "コメントする",new_book_comment_path(book) , class:"btn btn-secondary"  %>
+      <%= link_to "コメントする",new_book_comment_path(book) , class:"btn btn-success"  %>
     </td>
   </tr>
     <% if book.inout == 1 %>
@@ -60,3 +60,7 @@
   </tr>
 </table>
 <%= link_to "新規作成" , new_book_path , class:"btn btn-success" %>
+
+<div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12965.962486541188!2d140.15237729999998!3d35.66491965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1685093692883!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>

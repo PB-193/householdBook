@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'homes/top'
+  get 'homes/about'
     resources :books do
     post "/books/:id" => "books#update"
         resources :comments, only: [:new, :create, :destroy]
