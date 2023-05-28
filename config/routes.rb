@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'homes/top'
-  get 'homes/about'
     resources :books do
     post "/books/:id" => "books#update"
         resources :comments, only: [:new, :create, :destroy]
@@ -19,7 +17,8 @@ Rails.application.routes.draw do
     
     post '/guest_login', to: 'sessions#guest_login'
 
-    root to: "books#index"
+    root to: "homes#top"
+    get 'homes/about'
 
     # get "/books" => "books#index"
     # post "/books" => "books#create"
