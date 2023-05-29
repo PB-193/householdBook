@@ -28,7 +28,9 @@
       <% @book.comments.each do |comment| %>
         <p>
           <%= comment.comment %>
-          <span><%= link_to '削除', comment, method: :delete, data: { confirm: '本当に削除しますか？' },class:"btn btn-danger" %></span>
+          <span class="text-end">
+            <%= link_to '削除', comment, method: :delete, data: { confirm: '本当に削除しますか？' },class:"btn btn-danger" %>
+          </span>
         </p>
       <% end %>
     </td>

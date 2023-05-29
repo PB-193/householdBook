@@ -13,7 +13,9 @@
 
   <body>
     <nav class="navbar navbar-light bg-light">
-      <h3>家計簿アプリ</h3>
+      <%= link_to books_path , id:"title" do %>
+        <h3>家計簿アプリ</h3>
+      <% end %>
       <div>
         <% if session[:user_id].present? %>
           <%= link_to "会員情報の確認", show_user_path(session[:user_id]) , class:"btn btn-outline-secondary" %>
