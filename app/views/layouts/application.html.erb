@@ -13,7 +13,7 @@
 
   <body>
     <nav class="navbar navbar-light bg-light">
-      <%= link_to books_path , id:"title" do %>
+      <%= link_to root_path , id:"title" do %>
         <h3>家計簿アプリ</h3>
       <% end %>
       <div>
@@ -28,21 +28,22 @@
         <% end %>
       </div>
     </nav>
-
-    <div class="container" >
-      <% if flash[:notice] %>
-        <div class="alert alert-success" role="alert" >
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-
-      <% if flash[:alert] %>
-        <div class="alert alert-danger" role="alert" >
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
-
-      <%= yield %>
+    <div id="body-main">
+      <div class="container" >
+        <% if flash[:notice] %>
+          <div class="alert alert-success" role="alert" >
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+  
+        <% if flash[:alert] %>
+          <div class="alert alert-danger" role="alert" >
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+  
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

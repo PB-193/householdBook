@@ -14,7 +14,13 @@
  *= require_self
  */
 
+#body-main {
+  background-color: rgb(221, 230, 237) ;
+  height: 100%;
+}
+
 #title {
   text-decoration: none;
   color:black;
+  margin-left:10px;
 }

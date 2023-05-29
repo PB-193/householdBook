@@ -29,7 +29,7 @@ class BooksController < ApplicationController
     # もし@book.user_id = session[:user_id]がない場合、user_idカラムには何も値が代入されず、
     # ログインしているユーザーの情報が家計簿に保存されないため、誰が登録したのかが分からなくなってしまいます。
     if @book.save
-      flash[:notice] = "家計簿に「#{@book.year}年#{@book.month}月#{@book.category}」を登録しました"
+      flash[:notice] = "家計簿に「#{@book.year}年#{@book.month}月#{@book.category}」を投稿しました"
       redirect_to books_path
     else
       render :new
@@ -55,6 +55,12 @@ class BooksController < ApplicationController
     @book.destroy
     flash[:notice] = "削除しました"
     redirect_to books_path
+  end
+  
+  def destroy_all
+    @books = Book.where(user_id: session[:user_id])
+    @books.destroy_all
+    redirect_to request.referer
   end
 
   private

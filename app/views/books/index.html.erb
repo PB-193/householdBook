@@ -7,7 +7,11 @@
     <th>区分</th>
     <th>科目</th>
     <th>金額</th>
-    <th>リンク先</th>
+    <th>リンク先
+      <span id="all-delete" >
+        <%= link_to "一括削除", destroy_all_books_path, method: :delete, data: { confirm: "全てを削除しますか？" }, class: "btn btn-danger" %>
+      </span>
+    </th>
   </tr>
 
   <% sum = 0 %>
@@ -61,4 +65,4 @@
     <td></td>
   </tr>
 </table>
-<%= link_to "新規作成" , new_book_path , class:"btn btn-success" %>
+<%= link_to "新規投稿" , new_book_path , class:"btn btn-success" %>

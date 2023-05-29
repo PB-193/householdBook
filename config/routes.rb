@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     resources :books do
+        delete 'destroy_all', on: :collection
     post "/books/:id" => "books#update"
         resources :comments, only: [:new, :create, :destroy]
     end
